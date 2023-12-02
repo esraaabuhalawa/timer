@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import GameView from'../views/GameView.vue'
+import Jobs from '../views/Jobs.vue'
+import JobDetailsView from '../views/Jobs/JobDetailsView.vue'
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
   {
@@ -14,6 +18,33 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '/timer',
+    name : 'timerGame',
+    component: GameView
+   
+  },
+  {
+    path : '/jobs',
+    name : 'jobs',
+    component: Jobs
+  },
+  {
+    path : '/jobs/:id',
+    name : 'JobsDetails',
+    component: JobDetailsView
+  },
+  //redirect
+  {
+    path : '/all-jobs',
+    redirect : '/jobs'
+  },
+  //Error Route
+  {
+    path : '/:catchAll(.*)',
+    name : 'NotFound',
+    component : NotFound
   }
 ]
 
